@@ -29,6 +29,7 @@ def palette(p):
         'dash': f'<path stroke="%23{ink}" stroke-linecap="round" stroke-width="3" d="M4 8h8"/>',
     }
     for role, shape in icons.items():
+        shape = shape.replace(chr(34), chr(39))
         values.append(f"--e-{role}-image: url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>{shape}</svg>\");")
     return ":root, [data-bs-theme] {\n  " + "\n  ".join(values) + "\n}\n"
 
