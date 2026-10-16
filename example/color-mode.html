@@ -1,0 +1,9 @@
+<!-- Demo-only: allow direct links to the light and dark specimens. -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const desired = new URLSearchParams(location.search).get('mode');
+  if (['light', 'dark'].includes(desired)) {
+    if ((document.documentElement.dataset.scheme === 'alternate') !== (desired === 'dark')) window.smalldocsToggleScheme();
+  }
+});
+</script>

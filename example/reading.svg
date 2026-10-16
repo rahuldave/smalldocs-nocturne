@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-label="Seven reading sessions in minutes">
+  <rect width="720" height="320" fill="#f8f4eb" rx="4"/>
+  <g font-family="sans-serif" fill="#5f6b62" font-size="12">
+    <text x="34" y="36" letter-spacing="2" font-size="10">A WEEK OF READING</text>
+    <text x="34" y="62" font-family="Georgia,serif" fill="#25372d" font-size="22">A little time, well spent.</text>
+    <path d="M40 250H680" stroke="#d4d6c7"/>
+    <g fill="#254f38"><path d="M70 196h46v54H70z M156 166h46v84h-46z M242 178h46v72h-46z M328 124h46v126h-46z M414 145h46v105h-46z M500 94h46v156h-46z M586 136h46v114h-46z"/></g>
+    <g text-anchor="middle"><text x="93" y="187">18</text><text x="179" y="157">28</text><text x="265" y="169">24</text><text x="351" y="115">42</text><text x="437" y="136">35</text><text x="523" y="85">52</text><text x="609" y="127">38</text><text x="93" y="276">Mon</text><text x="179" y="276">Tue</text><text x="265" y="276">Wed</text><text x="351" y="276">Thu</text><text x="437" y="276">Fri</text><text x="523" y="276">Sat</text><text x="609" y="276">Sun</text></g>
+  </g>
+</svg>

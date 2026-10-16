@@ -1,0 +1,8 @@
+
+/* Quarto's navbar has its own Bootstrap color mode. Keep the page palette. */
+html #quarto-header .navbar { background: var(--e-paper); border-bottom: 1px solid var(--e-line); }
+html .navbar .navbar-brand, html .navbar .navbar-title { color: var(--e-accent); }
+html .navbar .nav-link { color: var(--e-muted); }
+html .navbar .nav-link.active { color: var(--e-accent); }
+html .sidebar nav[role=doc-toc] > h2 { font-family: var(--bs-font-sans-serif); font-size: .7rem; }
+html .nav-footer { font-family: var(--bs-font-sans-serif); font-size: .75rem; }

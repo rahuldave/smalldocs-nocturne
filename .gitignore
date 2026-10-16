@@ -1,0 +1,8 @@
+_site/
+.quarto/
+.build/
+example/_extensions/
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store

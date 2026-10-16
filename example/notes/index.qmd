@@ -1,0 +1,11 @@
+---
+title: The reading notebook
+subtitle: Small observations, kept for another day.
+listing:
+  contents: "*.qmd"
+  sort: date desc
+  type: default
+  categories: true
+  filter-ui: true
+  sort-ui: false
+---

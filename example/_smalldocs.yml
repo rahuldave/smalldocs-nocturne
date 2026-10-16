@@ -1,0 +1,42 @@
+project:
+  type: website
+website:
+  title: Nocturne
+  description: Midnight ink, warm brass, and a literary serif. Made for focused reading,
+    with a pearl-paper light mode.
+  site-url: https://rahuldave.com/smalldocs-nocturne/
+  repo-url: https://github.com/rahuldave/smalldocs-nocturne
+  page-navigation: true
+  navbar:
+    left:
+    - href: index.qmd
+      text: Overview
+    - href: pages/typography.qmd
+      text: Typography
+    - href: pages/code.qmd
+      text: Code & data
+    - href: notes/index.qmd
+      text: Notes
+    tools:
+    - icon: github
+      href: https://github.com/rahuldave/smalldocs-nocturne
+  sidebar:
+    style: floating
+    contents:
+    - section: The notebook
+      contents:
+      - index.qmd
+      - pages/typography.qmd
+      - pages/code.qmd
+      - pages/figures.qmd
+    - section: In practice
+      contents:
+      - pages/install.qmd
+      - notes/index.qmd
+  page-footer:
+    left: "Nocturne \xB7 A SmallDocs theme"
+    right: Made with [SmallDocs](https://github.com/rahuldave/smalldocs)
+theme: nocturne
+toc: true
+code-copy: true
+include-after-body: color-mode.html

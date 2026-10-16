@@ -1,0 +1,59 @@
+---
+title: A small library, thoughtfully built
+subtitle: On keeping good ideas close, and giving them room to breathe.
+---
+
+Good documentation feels like a well-kept notebook. There is a clear place to
+begin, enough space to think, and a useful example just when you need one.
+The page makes room for the work.
+
+## Begin with a simple idea
+
+Imagine a little library of things you want to return to: an essay, a useful
+function, a question that deserves a second look. Each entry needs a title,
+a few words of context, and a way to find it again.
+
+```{.python filename="library.py"}
+from dataclasses import dataclass
+
+@dataclass
+class Entry:
+    title: str
+    tags: tuple[str, ...] = ()
+
+library = [Entry("The art of paying attention", ("reading",))]
+```
+
+The code uses **IBM Plex Mono**, with a little more room between lines. Names,
+punctuation, and indentation stay distinct. Inline expressions such as
+`entry.title` belong comfortably in the surrounding text.
+
+## Leave room for the reader
+
+A useful page has a rhythm: a thought, an example, a pause. Headings mark a
+change of subject. A quieter margin keeps the route through the document
+visible without competing for attention.[^measure]
+
+> A good notebook is a place to think on paper, and a place to find that
+> thought again.
+
+[^measure]: The reading column is capped at 710 pixels, with smaller navigation
+    and generous space between the columns.
+
+::: {.callout-note}
+## Take a closer look
+The [typography specimen](pages/typography.qmd) shows longer prose and quotations.
+The [code and data page](pages/code.qmd) adds tabs, tables, and a folded example.
+:::
+
+## A modest set of tools
+
+| Piece | Purpose | Example |
+|:------|:--------|:--------|
+| A title | Say what the page is about | The reading notebook |
+| A tag | Give an idea a second home | `reading`, `python` |
+| A link | Connect one thought to another | [Notes](notes/index.qmd) |
+
+This notebook uses the **Nocturne** theme. The sun or moon in the
+navigation switches between light and dark. [Make it your own](pages/install.qmd)
+with a single theme setting.

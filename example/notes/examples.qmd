@@ -1,0 +1,20 @@
+---
+title: An example is a little argument
+description: A few lines of code can do the work of a long explanation.
+date: 2026-10-12
+categories: [Code, Writing]
+---
+
+A useful example is small enough to hold in mind and complete enough to run.
+It gives the reader something concrete to question, change, and understand.
+
+## Start small
+
+```python
+def twice(value):
+    return value + value
+
+assert twice(21) == 42
+```
+
+The explanation can grow from here, one decision at a time.

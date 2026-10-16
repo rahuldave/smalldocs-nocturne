@@ -1,0 +1,52 @@
+---
+title: Make it your own
+subtitle: The Nocturne theme, installed the same way as the Tufte theme.
+---
+
+## Add the theme
+
+```sh
+smalldocs add rahuldave/smalldocs-nocturne
+```
+
+The command installs `_extensions/nocturne/`, with both modes and local fonts.
+
+## Choose it
+
+In `_smalldocs.yml`:
+
+```yaml
+theme: nocturne
+toc: true
+code-copy: true
+```
+
+For a `_quarto.yml` built by SmallDocs, put `theme: nocturne` under `smalldocs:`.
+The normal SmallDocs navigation control switches between the two color modes.
+
+## With Quarto
+
+```sh
+quarto add rahuldave/smalldocs-nocturne
+```
+
+```yaml
+format:
+  nocturne-html:
+    toc: true
+```
+
+## Editable sources
+
+The [repository](https://github.com/rahuldave/smalldocs-nocturne) contains the full
+theme source in `src/`, font files and Bootstrap in `vendor/`, the build scripts,
+tests, and these example pages. Run `sh scripts/build.sh` to rebuild the CSS and
+Quarto Sass. The compiled files in `_extensions/nocturne/` are committed too, so
+installing the theme needs no CSS compiler.
+
+## The design
+
+Midnight ink, warm brass, and a literary serif. Made for focused reading, with a pearl-paper light mode.
+
+All code uses IBM Plex Mono, bundled with the theme. The source and examples
+have an MIT license; the fonts retain their SIL Open Font License notices.

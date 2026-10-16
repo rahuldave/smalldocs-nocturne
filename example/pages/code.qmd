@@ -1,0 +1,97 @@
+---
+title: Code with room to think
+subtitle: A proper monospace face, considered syntax colors, and useful examples.
+---
+
+## A small, complete example
+
+Code is part of the argument. **IBM Plex Mono** gives it a distinct voice,
+with readable `0O`, `1Il`, `{}[]()`, and `=> != <=` at a practical size.
+The font files ship with the theme, so they work without a font service.
+
+```{.python filename="catalog.py"}
+from dataclasses import dataclass
+from pathlib import Path
+
+@dataclass(frozen=True)
+class Book:
+    title: str
+    author: str
+    year: int
+
+def find_books(books: list[Book], query: str) -> list[Book]:
+    """Find a title or author, ignoring case."""
+    needle = query.casefold()
+    return [
+        book for book in books
+        if needle in f"{book.title} {book.author}".casefold()
+    ]
+
+books = [Book("A Room with a View", "E. M. Forster", 1908)]
+print(find_books(books, "forster"))  # One good place to begin
+```
+
+## More than one language
+
+::: {.panel-tabset}
+
+### Python
+
+```python
+titles = [book.title for book in books if book.year < 1920]
+for title in sorted(titles):
+    print(title)
+```
+
+### JavaScript
+
+```javascript
+const titles = books
+  .filter(book => book.year < 1920)
+  .map(book => book.title)
+  .sort();
+console.log(titles);
+```
+
+### SQL
+
+```sql
+SELECT title, author
+FROM books
+WHERE year < 1920
+ORDER BY title;
+```
+
+:::
+
+## Details when you need them
+
+<details class="code-fold">
+<summary>Show the validation example</summary>
+
+```python
+def validate(book: Book) -> None:
+    if not book.title.strip():
+        raise ValueError("A book needs a title")
+    if book.year < 1:
+        raise ValueError("The year must be positive")
+```
+
+</details>
+
+## Tables for comparison
+
+| Title | Author | Year | Pages |
+|:------|:-------|-----:|------:|
+| A Room with a View | E. M. Forster | 1908 | 321 |
+| Pride and Prejudice | Jane Austen | 1813 | 432 |
+| The Time Machine | H. G. Wells | 1895 | 118 |
+
+The values above are sample data. A table keeps its rules light and its
+numbers aligned, leaving the comparison to do the work.
+
+::: {.callout-tip}
+## Try the controls
+Copy a code block, switch tabs, open the folded example, and change color mode.
+These are the normal SmallDocs controls used by the installable themes.
+:::

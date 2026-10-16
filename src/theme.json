@@ -1,0 +1,34 @@
+{
+  "name": "nocturne",
+  "title": "Nocturne",
+  "number": "03",
+  "tagline": "Notes after hours",
+  "description": "Midnight ink, warm brass, and a literary serif. Made for focused reading, with a pearl-paper light mode.",
+  "heading": "\"Source Serif 4\", Georgia, serif",
+  "body": "\"Source Serif 4\", Georgia, serif",
+  "fonts": [
+    "DM Sans",
+    "IBM Plex Mono",
+    "Source Serif 4"
+  ],
+  "light": {
+    "paper": "#f4f3f6",
+    "ink": "#292d43",
+    "muted": "#626779",
+    "panel": "#eae9ef",
+    "line": "#d0cddc",
+    "accent": "#71502f",
+    "secondary": "#624e85",
+    "code": "#eae9ef"
+  },
+  "dark": {
+    "paper": "#1c2030",
+    "ink": "#ede8de",
+    "muted": "#b5b6c3",
+    "panel": "#242a3c",
+    "line": "#42485d",
+    "accent": "#e2bd82",
+    "secondary": "#c6b4e1",
+    "code": "#252b3e"
+  }
+}

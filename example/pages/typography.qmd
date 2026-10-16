@@ -1,0 +1,71 @@
+---
+title: The shape of a good page
+subtitle: A specimen of prose, hierarchy, and the small details between them.
+author: The Elegant notebook
+date: 2026-10-16
+---
+
+## A comfortable measure
+
+The first obligation of a page is to be read. A comfortable line, a generous
+margin, and an unhurried rhythm do much of the work. The details become
+noticeable through their consistency: the distance above a heading, the
+weight of a rule, the way a link sits inside a sentence.
+
+This paragraph contains *emphasis*, **a stronger point**, and a
+[link to the code specimen](code.qmd). A reference to `library.find()` takes
+its place in the sentence without changing the rhythm. Numbers such as
+0123456789 and punctuation — dashes, “quotation marks,” and parentheses —
+should feel at home together.
+
+### A smaller thought
+
+The hierarchy comes from a few deliberate changes in size and weight. A
+heading should help a reader skim the page and then settle back into the text.
+
+#### One useful detail
+
+Subheadings stay clear at a smaller scale. They introduce a brief explanation,
+an exception, or the next step in an example.
+
+## Lists and quotations
+
+1. Start with something concrete: a question, a small example, or a result.
+2. Explain enough for the reader to make sense of it.
+3. Leave a useful route to the next idea.
+
+- A list can be brief.
+- A longer entry wraps naturally, with its continuation aligned to its own
+  text. The indentation keeps the page easy to scan.
+- Nested detail should earn its place.
+
+> Read a little, think a little, and write something worth returning to.
+> A notebook grows through attention, one useful page at a time.
+
+## Notes in context
+
+A footnote is a good home for a detail that would interrupt a sentence.[^notes]
+It remains available when the reader wants it.
+
+[^notes]: These demos use ordinary footnotes. Margin notes are supported by the
+    theme too: set `reference-location: margin`, as in the Tufte demo.
+
+::: {.callout-tip}
+## A useful aside
+Quiet colors and clear boundaries give an aside its own place on the page.
+:::
+
+::: {.callout-warning}
+## An important condition
+An exception needs enough contrast to be found again when it matters.
+:::
+
+::: {.callout-note collapse="true"}
+## A little more context
+This note folds away. Its title remains a useful signpost, and the detail is
+one click away.
+:::
+
+---
+
+The next specimen shows [code and data](code.qmd) in the same typographic system.
