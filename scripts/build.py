@@ -21,6 +21,14 @@ def palette(p):
     for name, key in mappings.items():
         values += [f"--bs-{name}: {p[key]};", f"--bs-{name}-rgb: {rgb(p[key])};"]
     values += [f"--bs-heading-color: {p['ink']}; --bs-border-color: {p['line']}; --bs-border-color-translucent: {p['line']}; --bs-code-color: {p['secondary']};", f"--bs-primary-text-emphasis: {p['accent']}; --bs-primary-bg-subtle: {p['panel']}; --bs-primary-border-subtle: {p['line']}; --bs-focus-ring-color: rgba({rgb(p['accent'])}, .25);"]
+    ink = p['paper'].removeprefix('#')
+    icons = {
+        'check': f'<path fill="none" stroke="%23{ink}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m4 8 3 3 5-6"/>',
+        'radio': f'<circle cx="8" cy="8" r="4" fill="%23{ink}"/>',
+        'dash': f'<path stroke="%23{ink}" stroke-linecap="round" stroke-width="3" d="M4 8h8"/>',
+    }
+    for role, shape in icons.items():
+        values.append(f"--e-{role}-image: url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>{shape}</svg>\");")
     return ":root, [data-bs-theme] {\n  " + "\n  ".join(values) + "\n}\n"
 
 
@@ -57,7 +65,7 @@ $font-family-monospace: "IBM Plex Mono", monospace !default;
 $headings-font-weight: 400 !default;
 $font-size-root: 17px !default;
 $font-size-base: 1.08rem !default;
-$line-height-base: 1.75 !default;
+$line-height-base: 1.45 !default;
 /*-- scss:rules --*/
 """
         # Quarto loads the dark layer after the light layer; only colors differ.

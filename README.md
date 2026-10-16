@@ -12,7 +12,7 @@ theme with light and dark modes, bundled fonts, and a corresponding Quarto exten
 | ![Nocturne in light mode](screenshots/light.jpg) | ![Nocturne in dark mode](screenshots/dark.jpg) |
 
 Code uses **IBM Plex Mono** in both modes. Fonts ship with the extension; the theme
-makes no requests to an external font service. The reading column is 710px wide,
+makes no requests to an external font service. The reading column is 640px wide,
 with smaller navigation and a compact table of contents.
 
 ## With SmallDocs
@@ -137,3 +137,14 @@ sources, then renders the example site with strict checks.
 Theme code and example pages: MIT, Rahul Dave. Bootstrap: MIT. Fonts:
 DM Sans, IBM Plex Mono, Source Serif 4, SIL Open Font License 1.1. All notices are included.
 The repository and publishing structure follow `smalldocs-tufte`.
+
+## Reading refinement (0.2.0)
+
+The original version is tagged `before-reading-redesign-2026-10-16`. This revision
+keeps the palette and font pairing, with 1.45 prose leading, a 640px reading
+column, quieter headings, and 14.45px code on desktop and phones. Navigation and
+captions are larger. Outline actions, secondary actions, check/radio marks,
+focus treatments, and callout icons now use the theme palette in both modes.
+
+The [comparison gallery](https://rahuldave.com/smalldocs-theme-gallery/?group=comparisons)
+keeps the original and refined versions alongside one another.
