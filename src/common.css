@@ -119,3 +119,5 @@ html .form-check-input[type=radio]:checked { --bs-form-check-bg-image: var(--e-r
 html .form-check-input[type=checkbox]:indeterminate { --bs-form-check-bg-image: var(--e-dash-image); }
 html .callout { --sd-callout: var(--e-accent); }
 html .callout-warning, html .callout-important, html .callout-caution { --sd-callout: var(--e-secondary); }
+
+html .form-select { --bs-form-select-bg-img: var(--e-select-image); }

@@ -23,6 +23,7 @@ def palette(p):
     values += [f"--bs-heading-color: {p['ink']}; --bs-border-color: {p['line']}; --bs-border-color-translucent: {p['line']}; --bs-code-color: {p['secondary']};", f"--bs-primary-text-emphasis: {p['accent']}; --bs-primary-bg-subtle: {p['panel']}; --bs-primary-border-subtle: {p['line']}; --bs-focus-ring-color: rgba({rgb(p['accent'])}, .25);"]
     ink = p['paper'].removeprefix('#')
     icons = {
+        'select': '<path fill="none" stroke="%23'+p['ink'].removeprefix('#')+'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3 6 5 5 5-5"/>',
         'check': f'<path fill="none" stroke="%23{ink}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m4 8 3 3 5-6"/>',
         'radio': f'<circle cx="8" cy="8" r="4" fill="%23{ink}"/>',
         'dash': f'<path stroke="%23{ink}" stroke-linecap="round" stroke-width="3" d="M4 8h8"/>',

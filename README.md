@@ -146,5 +146,5 @@ column, quieter headings, and 14.45px code on desktop and phones. Navigation and
 captions are larger. Outline actions, secondary actions, check/radio marks,
 focus treatments, and callout icons now use the theme palette in both modes.
 
-The [comparison gallery](https://rahuldave.com/smalldocs-theme-gallery/?group=comparisons)
+The [comparison gallery](https://rahuldave.com/elegant-themes/?group=comparisons)
 keeps the original and refined versions alongside one another.
