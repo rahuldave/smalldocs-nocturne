@@ -50,3 +50,33 @@ Midnight ink, warm brass, and a literary serif. Made for focused reading, with a
 
 All code uses IBM Plex Mono, bundled with the theme. The source and examples
 have an MIT license; the fonts retain their SIL Open Font License notices.
+
+## Optional title label
+
+The current theme does not add a fixed label above your title. To restore that
+effect, create `styles.css` in your site folder and add it to `_smalldocs.yml`:
+
+```yaml
+theme: nocturne
+css: styles.css
+```
+
+Put this rule in `styles.css`, and change the quoted label to suit your site:
+
+```css
+html .quarto-title::before {
+  content: "THE NOTEBOOK · VOL. 01";
+  display: block;
+  font: 400 .59rem var(--bs-font-monospace);
+  letter-spacing: .14em;
+  color: var(--e-accent);
+  margin-bottom: 1.5rem;
+}
+```
+
+The rule adds the same decorative text above every title. For text that changes
+with the page, use its content or `subtitle:` in its front matter. Remove the CSS
+rule to turn the label off.
+
+The [theme handbook](https://rahuldave.com/elegant-themes/theme-guide.html#nocturne) describes
+this theme and shows how to connect your stylesheet with SmallDocs and Quarto.
