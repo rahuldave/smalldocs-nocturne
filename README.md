@@ -40,6 +40,30 @@ The normal SmallDocs navigation button switches between light and dark.
 Installing the theme requires no Sass compiler or font downloads.
 `smalldocs themes` lists the project's installed themes.
 
+## Update or choose a version
+
+The reading refinement is **0.2.0** and keeps the configuration name `nocturne`.
+SmallDocs copies an extension into your project; it does not update that copy automatically.
+To replace an older installation with the refined release:
+
+```sh
+smalldocs add rahuldave/smalldocs-nocturne@v0.2.0 --force
+smalldocs render
+```
+
+Keep `theme: nocturne`. `--force` replaces `_extensions/nocturne/`; keep local theme changes
+in your site's own stylesheet before updating. Commit the installed extension with your site.
+`smalldocs themes` shows the installed source and commit.
+
+Leave out `@v0.2.0` to install the newest default-branch commit. To restore the original:
+
+```sh
+smalldocs add rahuldave/smalldocs-nocturne@before-reading-redesign-2026-10-16 --force
+```
+
+[Installation and version guide](https://rahuldave.com/elegant-themes/using-themes.html) ·
+[Compare original and refined themes](https://rahuldave.com/elegant-themes/?group=comparisons)
+
 ## With Quarto
 
 ```sh
