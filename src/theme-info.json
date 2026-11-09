@@ -1,0 +1,12 @@
+{
+  "name": "nocturne",
+  "title": "Nocturne",
+  "number": "03",
+  "tagline": "Notes after hours",
+  "description": "Midnight ink, warm brass, and a literary serif. Made for focused reading, with a pearl-paper light mode.",
+  "fonts": [
+    "DM Sans",
+    "IBM Plex Mono",
+    "Source Serif 4"
+  ]
+}

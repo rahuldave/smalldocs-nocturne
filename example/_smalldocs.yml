@@ -13,6 +13,8 @@ website:
       text: Overview
     - href: pages/typography.qmd
       text: Typography
+    - href: pages/foundations.qmd
+      text: Foundations
     - href: pages/code.qmd
       text: Code & data
     - href: notes/index.qmd

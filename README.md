@@ -186,3 +186,21 @@ focus treatments, and callout icons now use the theme palette in both modes.
 
 The [comparison gallery](https://rahuldave.com/elegant-themes/?group=comparisons)
 keeps the original and refined versions alongside one another.
+
+## Foundation contract (0.3)
+
+`src/foundations.json` is the authoritative paired palette, semantic role, typography, spacing and shape contract. The build ships its exact bytes as `_extensions/nocturne/foundations.json`. `src/theme-info.json` holds descriptive metadata; `src/theme.json` is a generated compatibility alias and must not be edited independently. Rebuild with `just build`, verify with `just test`, and inspect the Foundations page with `just demo`. Tests render newly generated working files in fresh SmallDocs and Quarto consumers.
+
+Version 0.3 changes visible typography and control/state behavior. Reading uses a 16px reference root with rem units, 20px Source Serif 4 prose, 16px DM Sans controls, 14px metadata, 36px titles and optional `.editorial-display` 48px Source Serif 4. Section headings use Source Serif 4. All roles use existing bundled real font faces. The 640px measure, 1.6 prose line height, spacing ladder, 4px radius and flat resting surfaces remain distinct from slide scaling.
+
+Ordinary text pairs reserve 5:1 on paper/panel/code; filled action ink reserves 4.5:1; meaningful control boundaries and focus reserve 3:1 against those surfaces. Decorative rules are separate. Success/warning/danger/info use explicit fill/ink/boundary values; author a state word and icon rather than relying on color. Error inputs need `aria-invalid` and associated feedback; disabled controls use native disabled behavior, and selected links use `aria-current` or `aria-selected` plus an underline. These scoped opaque-pair checks are not whole-page accessibility or physical projection guarantees.
+
+`just foundation-fixtures` additionally renders a clean Quarto consumer under the demo site at `quarto-foundations/index.html`; `qa-390.html` and `qa-quarto-390.html` embed actual 390px viewports for narrow-layout inspection. Start `just serve` and use those paths. These generated consumers are ignored.
+
+Quarto uses Sass only for defaults, embedded local fonts and paired color variables. The generated `foundations.css` is a scoped CSS overlay for typography, layout and components; the format manifest loads it after Quarto’s own theme. It contains no full Bootstrap stylesheet. This avoids feeding modern CSS through Quarto’s limited SCSS variable-analysis parser. SmallDocs continues to receive complete Bootstrap-based light/dark CSS.
+
+The rerunnable CUA flow is `integration_tests/foundations-browser.mjs`: pass the browser tab, served demo base URL, and parsed foundation manifest. It returns every computed-style failure across both renderers/modes and verifies actual mode toggles plus form entry, selection, checkbox and keyboard focus. Font resource loading and the real 390px frames remain manual package/resource and AX/screenshot gates because those objects are not exposed by the CUA evaluation sandbox. Physical room projection remains untested.
+
+Semantic success/warning/danger/info actions (filled and outlined) use the approved state fill/ink pairs. Their meaningful outer edge uses the neutral control boundary, reserved against paper, panel and code; state boundaries remain reserved against their own state fills. Hover/active retain the pair and add an underline. Neutral outline actions use the secondary-action ink. All disabled variants use the opaque disabled pair and require native disabled behavior.
+
+`just compat-current` runs the full tests and rebuilds both served consumers using an isolated SmallDocs 0.5.5 overlay, matching the current htmpres public-docs consumer. It preserves the repository’s locked SmallDocs 0.3.1 baseline. The Quarto fixture uses the installed Quarto executable in both cases.
