@@ -4,17 +4,17 @@
   "number": "03",
   "tagline": "Notes after hours",
   "description": "Midnight ink, warm brass, and a literary serif. Made for focused reading, with a pearl-paper light mode.",
-  "heading": "\"Source Serif 4\", Georgia, serif",
-  "body": "\"Source Serif 4\", Georgia, serif",
   "fonts": [
     "DM Sans",
     "IBM Plex Mono",
     "Source Serif 4"
   ],
+  "body": "\"Source Serif 4\", Georgia, serif",
+  "heading": "\"Source Serif 4\", Georgia, serif",
   "light": {
     "paper": "#f4f3f6",
     "ink": "#292d43",
-    "muted": "#626779",
+    "muted": "#5e6274",
     "panel": "#eae9ef",
     "line": "#d0cddc",
     "accent": "#71502f",

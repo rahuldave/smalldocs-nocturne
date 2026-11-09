@@ -1,0 +1,87 @@
+---
+title: Foundation component verification
+toc: true
+---
+
+## A clear hierarchy
+
+A normal paragraph keeps the primary body ink. This fixture verifies the current working extension in a fresh consumer, including [an ordinary underlined link](#form-controls).
+
+<p class="editorial-display">An editorial display</p>
+<p class="metadata">Metadata remains readable at 14 pixels.</p>
+
+### Supporting ideas
+
+A second paragraph checks the 16-pixel paragraph gap, 640-pixel reading measure and 1.6 line height. Narrow screens should wrap naturally.
+
+```python
+message = "Current working files"
+print(message)
+```
+
+| Role | Value |
+|---|---|
+| Body | Primary ink |
+| Boundary | Meaningful control edge |
+
+::: {.callout-note}
+## i Information
+Information is a separately named state, not the brand palette.
+:::
+
+::: {.callout-tip}
+## ✓ Success
+The reading operation completed.
+:::
+
+::: {.callout-warning}
+## ! Warning
+Review this input before continuing.
+:::
+
+::: {.callout-important}
+## × Error
+A word and symbol identify the error.
+:::
+
+::: {.callout-caution}
+## × Caution
+This caution uses the danger family, not the secondary brand hue.
+:::
+
+## Form controls
+
+```{=html}
+<form id="foundation-form" onsubmit="return false">
+<div class="mb-3"><label class="form-label" for="reading-name">Name</label><input id="reading-name" class="form-control" value="Readable input"></div>
+<div class="mb-3"><label class="form-label" for="reading-error">Email with error</label><input id="reading-error" class="form-control is-invalid" aria-invalid="true" aria-describedby="reading-error-message" value="missing-at-sign"><div id="reading-error-message" class="invalid-feedback">× Error: enter a complete email address.</div></div>
+<div class="mb-3"><label class="form-label" for="reading-select">Choose a format</label><select id="reading-select" class="form-select"><option>Article</option><option>Notebook</option></select></div>
+<div class="form-check"><input id="reading-checked" type="checkbox" class="form-check-input" checked><label for="reading-checked" class="form-check-label">Selected choice (check mark)</label></div>
+<div class="form-check"><input id="reading-disabled-check" type="checkbox" class="form-check-input" disabled><label for="reading-disabled-check" class="form-check-label">Disabled choice</label></div>
+<div class="mb-3"><label for="reading-disabled" class="form-label">Disabled input</label><input id="reading-disabled" class="form-control" disabled value="Unavailable"></div>
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin:24px 0">
+<button id="reading-primary" class="btn btn-primary" type="button">Primary action</button>
+<button id="reading-secondary" class="btn btn-secondary" type="button">Secondary action</button>
+<button class="btn btn-outline-primary" type="button">Outline action</button>
+<button id="reading-disabled-button" class="btn btn-primary" type="button" disabled>Disabled action</button>
+</div>
+<p>Semantic action labels include words and symbols; their outer edge uses the neutral control boundary.</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin:24px 0">
+<button id="reading-outline-secondary" class="btn btn-outline-secondary" type="button">Neutral outline</button>
+<button id="reading-success" class="btn btn-success" type="button">✓ Success</button>
+<button id="reading-outline-success" class="btn btn-outline-success" type="button">✓ Success outline</button>
+<button id="reading-disabled-success" class="btn btn-success" type="button" disabled>✓ Success disabled</button>
+<button id="reading-warning" class="btn btn-warning" type="button">! Warning</button>
+<button id="reading-outline-warning" class="btn btn-outline-warning" type="button">! Warning outline</button>
+<button id="reading-disabled-warning" class="btn btn-warning" type="button" disabled>! Warning disabled</button>
+<button id="reading-danger" class="btn btn-danger" type="button">× Delete</button>
+<button id="reading-outline-danger" class="btn btn-outline-danger" type="button">× Delete outline</button>
+<button id="reading-disabled-danger" class="btn btn-danger" type="button" disabled>× Delete disabled</button>
+<button id="reading-info" class="btn btn-info" type="button">i Information</button>
+<button id="reading-outline-info" class="btn btn-outline-info" type="button">i Information outline</button>
+<button id="reading-disabled-info" class="btn btn-info" type="button" disabled>i Information disabled</button>
+</div>
+</form>
+<nav class="nav" aria-label="Fixture pages"><a class="nav-link" href="#form-controls" aria-current="page">Current page (underlined)</a><a class="nav-link" href="#a-clear-hierarchy">Other page</a></nav>
+<div class="card"><div class="card-body"><h3>Grouped content</h3><p>A flat panel uses space rather than a permanent shadow.</p></div></div>
+```

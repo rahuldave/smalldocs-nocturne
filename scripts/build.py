@@ -1,4 +1,5 @@
 """Build the SmallDocs CSS and Quarto Sass from the tracked sources, offline."""
+
 import base64
 import json
 import re
@@ -8,29 +9,48 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-THEME = json.loads((ROOT / "src/theme.json").read_text())
+from foundations import load, palette as foundation_palette, rules as foundation_rules
+
+FOUNDATIONS, THEME = load(ROOT)
 
 
 def rgb(value):
-    return ", ".join(str(int(value[i:i+2], 16)) for i in (1, 3, 5))
+    return ", ".join(str(int(value[i : i + 2], 16)) for i in (1, 3, 5))
 
 
-def palette(p):
-    mappings = {"body-bg": "paper", "body-color": "ink", "emphasis-color": "ink", "secondary-color": "muted", "secondary-bg": "panel", "tertiary-bg": "panel", "link-color": "accent", "link-hover-color": "secondary", "primary": "accent"}
+def palette(p: dict, selected_ink: str) -> str:
+    mappings = {
+        "body-bg": "paper",
+        "body-color": "ink",
+        "emphasis-color": "ink",
+        "secondary-color": "muted",
+        "secondary-bg": "panel",
+        "tertiary-bg": "panel",
+        "link-color": "accent",
+        "link-hover-color": "secondary",
+        "primary": "accent",
+    }
     values = [f"--e-{k}: {v};" for k, v in p.items()]
     for name, key in mappings.items():
         values += [f"--bs-{name}: {p[key]};", f"--bs-{name}-rgb: {rgb(p[key])};"]
-    values += [f"--bs-heading-color: {p['ink']}; --bs-border-color: {p['line']}; --bs-border-color-translucent: {p['line']}; --bs-code-color: {p['secondary']};", f"--bs-primary-text-emphasis: {p['accent']}; --bs-primary-bg-subtle: {p['panel']}; --bs-primary-border-subtle: {p['line']}; --bs-focus-ring-color: rgba({rgb(p['accent'])}, .25);"]
-    ink = p['paper'].removeprefix('#')
+    values += [
+        f"--bs-heading-color: {p['ink']}; --bs-border-color: {p['line']}; --bs-border-color-translucent: {p['line']}; --bs-code-color: {p['secondary']};",
+        f"--bs-primary-text-emphasis: {p['accent']}; --bs-primary-bg-subtle: {p['panel']}; --bs-primary-border-subtle: {p['line']}; --bs-focus-ring-color: rgba({rgb(p['accent'])}, .25);",
+    ]
+    ink = selected_ink.removeprefix("#")
     icons = {
-        'select': '<path fill="none" stroke="%23'+p['ink'].removeprefix('#')+'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3 6 5 5 5-5"/>',
-        'check': f'<path fill="none" stroke="%23{ink}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m4 8 3 3 5-6"/>',
-        'radio': f'<circle cx="8" cy="8" r="4" fill="%23{ink}"/>',
-        'dash': f'<path stroke="%23{ink}" stroke-linecap="round" stroke-width="3" d="M4 8h8"/>',
+        "select": '<path fill="none" stroke="%23'
+        + p["ink"].removeprefix("#")
+        + '" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3 6 5 5 5-5"/>',
+        "check": f'<path fill="none" stroke="%23{ink}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m4 8 3 3 5-6"/>',
+        "radio": f'<circle cx="8" cy="8" r="4" fill="%23{ink}"/>',
+        "dash": f'<path stroke="%23{ink}" stroke-linecap="round" stroke-width="3" d="M4 8h8"/>',
     }
     for role, shape in icons.items():
         shape = shape.replace(chr(34), chr(39))
-        values.append(f"--e-{role}-image: url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>{shape}</svg>\");")
+        values.append(
+            f"--e-{role}-image: url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>{shape}</svg>\");"
+        )
     return ":root, [data-bs-theme] {\n  " + "\n  ".join(values) + "\n}\n"
 
 
@@ -40,7 +60,10 @@ def build():
     (out / "fonts").mkdir(parents=True, exist_ok=True)
     bootstrap_file = ROOT / "vendor/bootstrap/bootstrap.min.css"
     bootstrap = re.sub(r"/\*# sourceMappingURL=.*?\*/", "", bootstrap_file.read_text())
-    dark = subprocess.check_output([sys.executable, str(ROOT / "scripts/dark_root.py"), str(bootstrap_file)], text=True)
+    dark = subprocess.check_output(
+        [sys.executable, str(ROOT / "scripts/dark_root.py"), str(bootstrap_file)],
+        text=True,
+    )
     fonts = (ROOT / "src/fonts.css").read_text()
     for ref in re.findall(r"url\(([^)]+)\)", fonts):
         shutil.copy2(ROOT / "vendor" / ref, out / ref)
@@ -48,14 +71,37 @@ def build():
         shutil.copy2(license_file, out / "fonts" / license_file.name)
     shutil.copy2(ROOT / "vendor/bootstrap/LICENSE", out / "BOOTSTRAP-LICENSE")
     rules = f':root, [data-bs-theme] {{ --e-heading: {THEME["heading"]}; --e-body: {THEME["body"]}; }}\n'
-    rules += (ROOT / "src/common.css").read_text() + (ROOT / "src/design.css").read_text()
-    embedded = re.sub(r"url\(([^)]+)\)", lambda m: 'url("data:font/ttf;base64,' + base64.b64encode((out / m[1]).read_bytes()).decode() + '")', fonts)
+    rules += (ROOT / "src/common.css").read_text() + (
+        ROOT / "src/design.css"
+    ).read_text()
+    embedded = re.sub(
+        r"url\(([^)]+)\)",
+        lambda m: 'url("data:font/ttf;base64,'
+        + base64.b64encode((out / m[1]).read_bytes()).decode()
+        + '")',
+        fonts,
+    )
     for mode in ("light", "dark"):
         suffix = "-dark" if mode == "dark" else ""
-        colors = palette(THEME[mode])
+        data = FOUNDATIONS["modes"][mode]
+        selected_ink = data["swatches"][data["roles"]["selected-ink"]]
+        colors = palette(THEME[mode], selected_ink) + foundation_palette(
+            FOUNDATIONS, mode
+        )
         fallback = dark if mode == "dark" else ""
-        (out / f"{name}{suffix}.css").write_text(bootstrap + "\n" + fallback + fonts + f"\n/* {name}: {mode}. Built from src/; do not edit this file. */\n" + colors + f":root, [data-bs-theme] {{ color-scheme: {mode}; }}\n" + rules)
+        (out / f"{name}{suffix}.css").write_text(
+            bootstrap
+            + "\n"
+            + fallback
+            + fonts
+            + f"\n/* {name}: {mode}. Built from src/; do not edit this file. */\n"
+            + colors
+            + f":root, [data-bs-theme] {{ color-scheme: {mode}; }}\n"
+            + rules
+            + foundation_rules(FOUNDATIONS)
+        )
         p = THEME[mode]
+        states = FOUNDATIONS["modes"][mode]["states"]
         defaults = f"""/*-- scss:defaults --*/
 $body-bg: {p['paper']} !default;
 $body-color: {p['ink']} !default;
@@ -65,17 +111,35 @@ $border-color: {p['line']} !default;
 $font-family-sans-serif: {THEME['body']} !default;
 $font-family-monospace: "IBM Plex Mono", monospace !default;
 $headings-font-weight: 400 !default;
-$font-size-root: 17px !default;
-$font-size-base: 1.08rem !default;
-$line-height-base: 1.45 !default;
+$font-size-root: 16px !default;
+$font-size-base: {FOUNDATIONS['typography']['profiles']['reading']['body']/16:g}rem !default;
+$line-height-base: 1.6 !default;
+$navbar-bg: {p['paper']} !default;
+$navbar-fg: {p['ink']} !default;
+$navbar-light-color: {p['ink']} !default;
+$navbar-dark-color: {p['ink']} !default;
+$navbar-light-hover-color: {p['ink']} !default;
+$navbar-dark-hover-color: {p['ink']} !default;
+$callout-color-note: {states['info']['ink']} !default;
+$callout-color-tip: {states['success']['ink']} !default;
+$callout-color-warning: {states['warning']['ink']} !default;
+$callout-color-important: {states['danger']['ink']} !default;
+$callout-color-caution: {states['danger']['ink']} !default;
 /*-- scss:rules --*/
 """
         # Quarto loads the dark layer after the light layer; only colors differ.
-        sass_rules = colors if mode == "dark" else embedded + "\n" + colors + rules + (ROOT / "src/quarto.css").read_text()
+        # Sass provides defaults, local font faces and paired colors only.
+        # Keep authored CSS in the scoped overlay: Quarto's SCSS AST exporter
+        # cannot reliably analyze modern CSS custom properties and selectors.
+        sass_rules = colors if mode == "dark" else embedded + "\n" + colors
         (out / f"{name}{suffix}.scss").write_text(defaults + sass_rules)
     # Small manifests and the favicon are authored alongside the other sources.
     for filename in ("smalldocs.yml", "_extension.yml", "logo.svg"):
         shutil.copy2(ROOT / "src" / filename, out / filename)
+    (out / "foundations.css").write_text(
+        rules + (ROOT / "src/quarto.css").read_text() + foundation_rules(FOUNDATIONS)
+    )
+    shutil.copy2(ROOT / "src/foundations.json", out / "foundations.json")
     print(f"Built {THEME['title']}: two complete CSS themes and two Quarto Sass layers")
 
 
